@@ -32,7 +32,9 @@ function getWcagTags(level: string): string[] {
   return tags;
 }
 
-export function buildAxeRunConfig(config: AuditConfig): { runOnly: { type: string; values: string[] } } {
+export function buildAxeRunConfig(config: AuditConfig): {
+  runOnly: { type: string; values: string[] };
+} {
   const tags = config.tags.length > 0 ? config.tags : getWcagTags(config.wcagLevel);
   if (config.includeBestPractices) {
     tags.push('best-practice');
@@ -68,7 +70,10 @@ export function parseAxeResults(url: string, axeResults: AxeResults, duration: n
   };
 }
 
-export function computeScore(pages: PageResult[]): { score: number; grade: 'A' | 'B' | 'C' | 'D' | 'F' } {
+export function computeScore(pages: PageResult[]): {
+  score: number;
+  grade: 'A' | 'B' | 'C' | 'D' | 'F';
+} {
   if (pages.length === 0) {
     return { score: 0, grade: 'F' };
   }

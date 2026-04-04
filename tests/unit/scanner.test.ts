@@ -1,5 +1,10 @@
 import { describe, it, expect } from 'vitest';
-import { buildAxeRunConfig, parseAxeResults, computeScore, buildSummary } from '../../src/core/scanner';
+import {
+  buildAxeRunConfig,
+  parseAxeResults,
+  computeScore,
+  buildSummary,
+} from '../../src/core/scanner';
 import { PageResult } from '../../src/core/types';
 
 describe('buildAxeRunConfig', () => {
@@ -27,7 +32,11 @@ describe('buildAxeRunConfig', () => {
   });
 
   it('should use custom tags when provided', () => {
-    const config = buildAxeRunConfig({ wcagLevel: 'AA', includeBestPractices: false, tags: ['custom-tag'] });
+    const config = buildAxeRunConfig({
+      wcagLevel: 'AA',
+      includeBestPractices: false,
+      tags: ['custom-tag'],
+    });
     expect(config.runOnly.values).toContain('custom-tag');
     expect(config.runOnly.values).not.toContain('wcag2a');
   });
@@ -159,8 +168,24 @@ describe('buildSummary', () => {
         url: 'https://a.com',
         timestamp: '',
         violations: [
-          { id: '1', impact: 'critical', description: '', help: '', helpUrl: '', wcagTags: [], nodes: [] },
-          { id: '2', impact: 'serious', description: '', help: '', helpUrl: '', wcagTags: [], nodes: [] },
+          {
+            id: '1',
+            impact: 'critical',
+            description: '',
+            help: '',
+            helpUrl: '',
+            wcagTags: [],
+            nodes: [],
+          },
+          {
+            id: '2',
+            impact: 'serious',
+            description: '',
+            help: '',
+            helpUrl: '',
+            wcagTags: [],
+            nodes: [],
+          },
         ],
         passes: 10,
         incomplete: 1,
@@ -171,7 +196,15 @@ describe('buildSummary', () => {
         url: 'https://b.com',
         timestamp: '',
         violations: [
-          { id: '3', impact: 'moderate', description: '', help: '', helpUrl: '', wcagTags: [], nodes: [] },
+          {
+            id: '3',
+            impact: 'moderate',
+            description: '',
+            help: '',
+            helpUrl: '',
+            wcagTags: [],
+            nodes: [],
+          },
         ],
         passes: 20,
         incomplete: 0,

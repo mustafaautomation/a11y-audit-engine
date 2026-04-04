@@ -23,7 +23,9 @@ function makeReport(): AuditReport {
             help: 'Ensure images have alt attributes',
             helpUrl: 'https://example.com/help',
             wcagTags: ['wcag2a'],
-            nodes: [{ html: '<img src="photo.jpg">', target: ['img'], failureSummary: 'Add alt text' }],
+            nodes: [
+              { html: '<img src="photo.jpg">', target: ['img'], failureSummary: 'Add alt text' },
+            ],
           },
         ],
         passes: 25,

@@ -17,14 +17,17 @@ const IMPACT_COLORS: Record<Impact, string> = {
 };
 
 export function printReport(report: AuditReport): void {
-  const gradeColor = report.grade === 'A' ? GREEN : report.grade <= 'B' ? GREEN : report.grade <= 'C' ? YELLOW : RED;
+  const gradeColor =
+    report.grade === 'A' ? GREEN : report.grade <= 'B' ? GREEN : report.grade <= 'C' ? YELLOW : RED;
 
   console.log();
   console.log(`${BOLD}${CYAN}Accessibility Audit Report${RESET}`);
   console.log(`${DIM}WCAG ${report.wcagLevel} · ${report.timestamp}${RESET}`);
   console.log();
 
-  console.log(`  ${BOLD}Score:${RESET} ${gradeColor}${BOLD}${report.grade}${RESET} ${DIM}(${report.score}%)${RESET}`);
+  console.log(
+    `  ${BOLD}Score:${RESET} ${gradeColor}${BOLD}${report.grade}${RESET} ${DIM}(${report.score}%)${RESET}`,
+  );
   console.log(
     `  ${BOLD}Pages:${RESET} ${report.summary.totalPages}  ${BOLD}Violations:${RESET} ${report.summary.totalViolations}  ${BOLD}Pass Rate:${RESET} ${(report.summary.passRate * 100).toFixed(1)}%`,
   );

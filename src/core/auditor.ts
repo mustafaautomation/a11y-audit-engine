@@ -17,7 +17,11 @@ export class A11yAuditor {
     return buildAxeRunConfig(this.config);
   }
 
-  parseResults(url: string, axeResults: Parameters<typeof parseAxeResults>[1], duration: number): PageResult {
+  parseResults(
+    url: string,
+    axeResults: Parameters<typeof parseAxeResults>[1],
+    duration: number,
+  ): PageResult {
     const result = parseAxeResults(url, axeResults, duration);
     this.pages.push(result);
     return result;

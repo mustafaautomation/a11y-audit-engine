@@ -3,7 +3,11 @@ import path from 'path';
 import { AuditReport, Impact } from '../core/types';
 
 function esc(text: string): string {
-  return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  return text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
 }
 
 const IMPACT_COLORS: Record<Impact, string> = {
@@ -18,7 +22,8 @@ export function generateHtmlReport(report: AuditReport, outputPath: string): voi
   if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
 
   const gradeColor =
-    { A: '#3fb950', B: '#3fb950', C: '#d29922', D: '#d29922', F: '#f85149' }[report.grade] || '#8b949e';
+    { A: '#3fb950', B: '#3fb950', C: '#d29922', D: '#d29922', F: '#f85149' }[report.grade] ||
+    '#8b949e';
 
   const pageRows = report.pages
     .map((p) => {
