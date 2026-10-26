@@ -3,7 +3,7 @@
 [![CI](https://github.com/mustafaautomation/a11y-audit-engine/actions/workflows/ci.yml/badge.svg)](https://github.com/mustafaautomation/a11y-audit-engine/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![WCAG 2.2](https://img.shields.io/badge/WCAG-2.2_AA-005A9C.svg)](https://www.w3.org/WAI/WCAG22/quickref/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3178C6.svg?logo=typescript&logoColor=white)](https://www.typescriptlang.org)
+[![TypeScript](https://img.shields.io/badge/TypeScript-6.0-3178C6.svg?logo=typescript&logoColor=white)](https://www.typescriptlang.org)
 
 Automated accessibility auditing engine. Scans web pages against WCAG 2.2 standards using [axe-core](https://github.com/dequelabs/axe-core), generates compliance reports, and integrates into CI pipelines.
 

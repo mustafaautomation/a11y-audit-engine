@@ -33,7 +33,7 @@ program
         includeBestPractices: options.bestPractices || false,
       });
 
-      // eslint-disable-next-line @typescript-eslint/no-var-requires
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
       const axeSource = require('axe-core').source as string;
       const axeConfig = auditor.getAxeConfig();
 
