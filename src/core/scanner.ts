@@ -50,13 +50,11 @@ export function parseAxeResults(url: string, axeResults: AxeResults, duration: n
     help: v.help,
     helpUrl: v.helpUrl,
     wcagTags: v.tags.filter((t) => t.startsWith('wcag')),
-    nodes: v.nodes.map(
-      (n): ViolationNode => ({
-        html: n.html,
-        target: n.target.map(String),
-        failureSummary: n.failureSummary,
-      }),
-    ),
+    nodes: v.nodes.map((n): ViolationNode => ({
+      html: n.html,
+      target: n.target.map(String),
+      failureSummary: n.failureSummary,
+    })),
   }));
 
   return {
