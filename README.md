@@ -11,24 +11,30 @@ Automated accessibility auditing engine. Scans web pages against WCAG 2.2 standa
 
 ## Why
 
-- **5,000+ digital accessibility lawsuits** filed annually in the US
-- WCAG compliance is not optional for enterprise applications
-- Manual audits are slow and miss regressions
-- This engine automates WCAG scanning with every CI run
+- Accessibility regressions are easy to ship and hard to spot in manual review
+- Manual audits are slow and only run occasionally
+- This engine runs automated WCAG checks with every CI run (automated rules catch a subset of WCAG issues; manual testing is still needed)
 
 ---
 
 ## Quick Start
 
+Not published to npm; install from source:
+
 ```bash
-npm install a11y-audit-engine playwright
+git clone https://github.com/mustafaautomation/a11y-audit-engine.git
+cd a11y-audit-engine
+npm ci
+npx playwright install chromium
+npm run build
+npm test                 # 41 unit tests
 
 # CLI — scan a page
-npx a11y-audit scan https://example.com --html report.html
-
-# Library — integrate into test suites
-import { A11yAuditor } from 'a11y-audit-engine';
+node dist/cli.js scan https://example.com --html report.html
+# or `npm link` once, then use `a11y-audit` as in the examples below
 ```
+
+To use it as a library in another project, install it from the local checkout (`npm install ../a11y-audit-engine`) and `import { A11yAuditor } from 'a11y-audit-engine'`.
 
 ---
 
@@ -36,22 +42,22 @@ import { A11yAuditor } from 'a11y-audit-engine';
 
 ```bash
 # Scan single page (WCAG AA by default)
-npx a11y-audit scan https://example.com
+a11y-audit scan https://example.com
 
 # Scan multiple pages
-npx a11y-audit scan https://example.com https://example.com/about
+a11y-audit scan https://example.com https://example.com/about
 
 # Custom WCAG level
-npx a11y-audit scan https://example.com --level AAA
+a11y-audit scan https://example.com --level AAA
 
 # Include best practices
-npx a11y-audit scan https://example.com --best-practices
+a11y-audit scan https://example.com --best-practices
 
 # Generate reports
-npx a11y-audit scan https://example.com --html report.html --json report.json
+a11y-audit scan https://example.com --html report.html --json report.json
 ```
 
-The CLI exits with code 1 if any **critical** violations are found — perfect for CI gates.
+The CLI exits with code 1 if any **critical** violations are found so it can be used as a CI gate.
 
 ---
 
@@ -153,7 +159,9 @@ a11y-audit-engine/
 │   ├── cli.ts                # CLI entry point
 │   └── index.ts              # Public API
 ├── tests/unit/
-│   ├── scanner.test.ts       # 13 tests — config, parsing, scoring, summary
+│   ├── scanner.test.ts       # 12 tests — config, parsing, scoring, summary
+│   ├── scoring.test.ts       # 16 tests — score and grade calculation
+│   ├── wcag-rules.test.ts    # 7 tests — WCAG rule mapping
 │   ├── auditor.test.ts       # 4 tests — auditor workflow
 │   └── reporters.test.ts     # 2 tests — HTML + JSON output
 └── .github/workflows/ci.yml
